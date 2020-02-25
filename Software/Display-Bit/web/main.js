@@ -132,6 +132,19 @@ async function disconnect() {
 
 }
 
+function convert_bit(value)
+{
+  if (value == "1\n") {
+    return "1"
+  }
+  else if (value == "0\n") {
+    return "0"
+  }
+  else {
+    return "Unk"
+  }
+}
+
 //------------------------------------------
 //-- Bucle principal de lectura
 //-----------------------------------------
@@ -146,9 +159,9 @@ async function readLoop() {
 
     //-- Hay un valor correcto: Mostrarlo en la gui
     if (value) {
-      displaybit.innerText = value;
-      console.log(value);
-      console.log("[RCV] ", value)
+      bit = convert_bit(value);
+      displaybit.innerText = bit
+      console.log(bit);
     }
 
     //-- El stream se ha eliminado

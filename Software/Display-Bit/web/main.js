@@ -18,7 +18,6 @@ const notSupported = document.getElementById('display_err_not_serial');
 
 //-- Botón de conexion al puerto serie
 const butConnect = document.getElementById('butConnect');
-const butToggle = document.getElementById('butToggle');
 
 //------------------------------------------------------
 //-- PUNTO DE ENTRADA

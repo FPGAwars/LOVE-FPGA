@@ -4,9 +4,42 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <script src="main.js" defer></script>
     <title>Display Bit</title>
   </head>
   <body>
+
+    <!-- Mensaje de error qeue se muestra si el navegador
+         no tiene web-serial
+     -->
+    <div class="w3-panel w3-red w3-round-xlarge w3-border w3-margin-left w3-margin-right" id="display_err_not_serial">
+      <h3>Warning!</h3>
+      <p>Este navegador NO soporta <b>Web Serial</b></p>
+      <p>Asegúrate que estás usando
+      Chrome/Chromium 78 o superior
+        y que está habilitado el flag
+      <code>#enable-experimental-web-platform-features</code> en
+      <code>chrome://flags</code></p>
+      <p>Para habilitarlo en Chrome/Chromium copia esta URL en una nueva pestaña:
+      <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a>
+      y pincha en ENABLE</p>
+    </div>
+
+    <!-- Boton de conectar -->
+
+    <div class="w3-container w3-margin" id="terminal_container" hidden>
+      <div class="w3-bar">
+        <button class="w3-bar-item w3-button w3-green" id="butConnect" type="button"  disabled>🔌Conectar</button>
+      </div>
+    </div>
+
+  <!-- Toggle button -->
+
+    <div class="w3-container w3-margin-top w3-border w3-padding-16">
+      <button class="w3-btn w3-blue w3-block w3-padding-32 w3-ripple" type="button" id="butToggle"  disabled>TOGGLE BUTTON</button>
+    </div>
+
+
     <div class="w3-container w3-center">
       <h2><b>Display Bit</b></h2>
       <p class="w3-jumbo w3-green w3-border"><b>1</b></p>

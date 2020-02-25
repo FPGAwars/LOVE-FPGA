@@ -134,15 +134,13 @@ async function disconnect() {
 
 function convert_bit(value)
 {
-  if (value == "1\n") {
+  if (value == "1\n" || value == "1") {
     return "1"
   }
-  else if (value == "0\n") {
+  else if (value == "0\n" || value == "0") {
     return "0"
   }
-  else {
-    return "Unk"
-  }
+  return displaybit.innerText;
 }
 
 //------------------------------------------
@@ -155,7 +153,7 @@ async function readLoop() {
   while (true) {
 
     //-- Leer el valor del stream de entrada
-    const { value, done } = await reader.read();
+    const { value, done } = await reader.read(2);
 
     //-- Hay un valor correcto: Mostrarlo en la gui
     if (value) {

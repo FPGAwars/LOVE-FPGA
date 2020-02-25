@@ -19,6 +19,9 @@ const notSupported = document.getElementById('display_err_not_serial');
 //-- Botón de conexion al puerto serie
 const butConnect = document.getElementById('butConnect');
 
+//-- DisplayBit
+const displaybit = document.getElementById('displaybit');
+
 //------------------------------------------------------
 //-- PUNTO DE ENTRADA
 //------------------------------------------------------
@@ -38,12 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     //-- Mostrar el terminal
     terminal_container.hidden = false;
-
-    //-- Abrir terminal
-    term = new Terminal();
-    term.open(terminal);
-
-
   }
 });
 
@@ -71,12 +68,6 @@ async function clickConnect() {
 
   //-- Activar la interfaz
   butConnect.textContent = '🔌Desconectar';
-  butToggle.disabled = false;
-
-  //-- Boton de Toggle pulsado
-  butToggle.onclick = () => {
-    writeToStream('t\n');
-  }
 
 }
 
@@ -98,6 +89,19 @@ async function connect() {
   const encoder = new TextEncoderStream();
   outputDone = encoder.readable.pipeTo(port.writable);
   outputStream = encoder.writable;
+
+  //-- Configurar el stream de entrada. Se pasa primero por un
+  //-- decodificador de texto y luego se reciben los caracteres
+  let decoder = new TextDecoderStream();
+  inputDone = port.readable.pipeTo(decoder.writable);
+
+  //-- La informacion se lee desde el lector reader
+  reader = decoder.readable.getReader();
+
+  //-- Bucle principal de lectura
+  //-- Se procesan los caracteres recibidos
+  //-- y se escriben en el estado del boton en la gui
+  readLoop();
 }
 
 
@@ -105,6 +109,14 @@ async function connect() {
 //-- Cerrar el puerto serie
 //-----------------------------------
 async function disconnect() {
+
+  // -- Cerrar el stream de entrada (lector)
+    if (reader) {
+      await reader.cancel();
+      await inputDone.catch(() => {});
+      reader = null;
+      inputDone = null;
+    }
 
   // -- Cerrar el stream de salida
   if (outputStream) {
@@ -118,6 +130,34 @@ async function disconnect() {
   await port.close();
   port = null;
 
+}
+
+//------------------------------------------
+//-- Bucle principal de lectura
+//-----------------------------------------
+async function readLoop() {
+
+  //-- Se ejecuta indefinidamente
+  //-- hasta que stream de entrada desaparezca
+  while (true) {
+
+    //-- Leer el valor del stream de entrada
+    const { value, done } = await reader.read();
+
+    //-- Hay un valor correcto: Mostrarlo en la gui
+    if (value) {
+      displaybit.innerText = value;
+      console.log(value);
+      console.log("[RCV] ", value)
+    }
+
+    //-- El stream se ha eliminado
+    if (done) {
+      console.log('[readLoop] DONE', done);
+      reader.releaseLock();
+      break;
+    }
+  }
 }
 
 //----------------------------------------

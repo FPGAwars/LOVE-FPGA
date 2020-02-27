@@ -1,0 +1,3 @@
+cat /dev/ttyUSB1
+
+

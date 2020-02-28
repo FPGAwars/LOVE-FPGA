@@ -46,7 +46,7 @@
             "clock": false
           },
           "position": {
-            "x": -368,
+            "x": -472,
             "y": 240
           }
         },
@@ -66,19 +66,19 @@
           },
           "position": {
             "x": 0,
-            "y": 320
+            "y": 344
           }
         },
         {
           "id": "b1037f5a-087d-481a-97f1-61cae6043dbc",
           "type": "basic.info",
           "data": {
-            "info": "## DisplayBit-Button2\n\nIt sends the state of the button whenever there is a change  \nAlso after the reset\n",
+            "info": "## DisplayBit-Button\n\nIt sends the state of the button whenever there is a change  ",
             "readonly": true
           },
           "position": {
-            "x": -344,
-            "y": -24
+            "x": -480,
+            "y": 32
           },
           "size": {
             "width": 520,
@@ -89,7 +89,7 @@
           "id": "d41ef7b7-f076-4506-a56e-b67c84aa088c",
           "type": "2107ac7691a91a762c2d0be100faaabd6189973a",
           "position": {
-            "x": -208,
+            "x": -312,
             "y": 224
           },
           "size": {
@@ -107,6 +107,54 @@
           "size": {
             "width": 96,
             "height": 64
+          }
+        },
+        {
+          "id": "10a8beb5-445e-4c64-8a84-b74111425592",
+          "type": "basic.info",
+          "data": {
+            "info": "Button state",
+            "readonly": true
+          },
+          "position": {
+            "x": -192,
+            "y": 208
+          },
+          "size": {
+            "width": 144,
+            "height": 40
+          }
+        },
+        {
+          "id": "d7abc0f7-e2a2-4ebe-a5a6-c33a70a7bdc3",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the button's state  \nin the LED",
+            "readonly": true
+          },
+          "position": {
+            "x": -64,
+            "y": 296
+          },
+          "size": {
+            "width": 224,
+            "height": 56
+          }
+        },
+        {
+          "id": "663c9bc4-e05a-40ca-b2b5-297dfc9fed2e",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the button's state  \nin the PC",
+            "readonly": true
+          },
+          "position": {
+            "x": 0,
+            "y": 128
+          },
+          "size": {
+            "width": 208,
+            "height": 56
           }
         }
       ],
@@ -152,7 +200,7 @@
           },
           "vertices": [
             {
-              "x": -48,
+              "x": -152,
               "y": 304
             }
           ]

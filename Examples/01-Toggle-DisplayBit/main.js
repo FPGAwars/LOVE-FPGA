@@ -42,8 +42,6 @@ document.addEventListener('DOMContentLoaded', () => {
     //-- Activar el boton de conectar
     butConnect.disabled = false;
 
-    //-- Mostrar el terminal
-    terminal_container.hidden = false;
   }
 });
 
@@ -59,10 +57,11 @@ async function clickConnect() {
   if (port) {
     await disconnect();
 
-    //-- Cambiar el estado de al interfaz
+    //-- Cambiar el estado de la interfaz
     butConnect.textContent = '🔌Conectar';
     butToggle.disabled = true;
     displaybit.disabled = true;
+    displaybit.classList.add("w3-opacity-max");
 
     return;
   }
@@ -74,7 +73,7 @@ async function clickConnect() {
   butConnect.textContent = '🔌Desconectar';
 
   butToggle.disabled = false;
-  butToggle.disabled = false;
+  displaybit.classList.remove("w3-opacity-max")
 
   //-- Boton de Toggle pulsado
   butToggle.onclick = () => {

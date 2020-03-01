@@ -20,6 +20,7 @@ const notSupported = document.getElementById('display_err_not_serial');
 const butConnect = document.getElementById('butConnect');
 const bit0 = document.getElementById('bit0');
 const bit1 = document.getElementById('bit1');
+const inputBit = document.getElementById('inputBit');
 
 //------------------------------------------------------
 //-- PUNTO DE ENTRADA
@@ -57,6 +58,8 @@ async function clickConnect() {
     butConnect.textContent = '🔌Conectar';
     bit0.disabled = true;
     bit1.disabled = true;
+    inputBit.classList.add("w3-opacity-max");
+    inputBit.innerHTML = '?'
 
     return;
   }
@@ -68,15 +71,18 @@ async function clickConnect() {
   butConnect.textContent = '🔌Desconectar';
   bit0.disabled = false;
   bit1.disabled = false;
+  inputBit.classList.remove("w3-opacity-max")
 
   //-- Boton de Bit a 0 pulsado
   bit0.onclick = () => {
     writeToStream('0\n');
+    inputBit.innerHTML = '0';
   }
 
   //-- Boton de Bit a 1 pulsado
   bit1.onclick = () => {
     writeToStream('1\n');
+    inputBit.innerHTML = '1';
   }
 
 }

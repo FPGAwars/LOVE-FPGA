@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="w3.css">
+    <script src="main.js" defer></script>
+    <title>Panel 1-1: Toggle-DisplayBit</title>
+  </head>
+  <body>
+
+    <!-- Mensaje de error qeue se muestra si el navegador
+         no tiene web-serial
+     -->
+    <div class="w3-panel w3-red w3-round-xlarge w3-border w3-margin-left w3-margin-right" id="display_err_not_serial">
+      <h3>Warning!</h3>
+      <p>Este navegador NO soporta <b>Web Serial</b></p>
+      <p>Asegúrate que estás usando
+      Chrome/Chromium 78 o superior
+        y que está habilitado el flag
+      <code>#enable-experimental-web-platform-features</code> en
+      <code>chrome://flags</code></p>
+      <p>Para habilitarlo en Chrome/Chromium copia esta URL en una nueva pestaña:
+      <a href="chrome://flags/#enable-experimental-web-platform-features">chrome://flags/#enable-experimental-web-platform-features</a>
+      y pincha en ENABLE</p>
+    </div>
+
+    <!-- Boton de conectar -->
+
+    <div class="w3-container w3-margin">
+      <div class="w3-bar">
+        <button class="w3-bar-item w3-button w3-pale-green" id="butConnect" type="button"  disabled>🔌Conectar</button>
+      </div>
+    </div>
+
+    <!-- Bit buttons -->
+
+      <div class="w3-container w3-border">
+        <h3>INPUT</h3>
+        <button class="w3-btn w3-blue w3-ripple" type="button" id="bit0"  disabled>Bit 0</button>
+        <button class="w3-btn w3-blue w3-ripple" type="button" id="bit1"  disabled>Bit 1</button>
+        <h2 id="inputBit" class="w3-blue w3-border w3-center w3-opacity-max"><b>?</b></h2>
+      </div>
+
+   <!-- DisplayBit -->
+
+    <div class="w3-container w3-border">
+      <h3>OUTPUT</h3>
+      <h2 id="displaybit" class="w3-green w3-border w3-center w3-opacity-max"><b>?</b></h2>
+    </div>
+  </body>
+</html>

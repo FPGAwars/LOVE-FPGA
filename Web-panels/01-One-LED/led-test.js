@@ -1,182 +1,129 @@
-const boton = document.getElementById("boton");
 
-//-- Puerto serie
-let port;
+class SerialPanel {
+  constructor(msg_serialId, butSerialId) {
 
-//-- Lector del stream de entrada
-let reader;
+    //-- Puerto serie
+    this.port = null;
 
-//-- Stream de entrada codificado
-let inputDone;
+    //-- Lector del stream de entrada
+    this.reader = null;
 
-//-- Stream de salida
-let outputDone;
+    //-- Stream de entrada codificado
+    this.inputDone = null;
 
-//-- Stream de entrada
-let inputStream;
+    //-- Stream de salida
+    this.outputDone = null;
 
-//-- Mensaje de error: Puerto serie no soportado
-const notSupported = document.getElementById('display_err_not_serial');
+    //-- Stream de entrada
+    this.inputStream = null;
 
-//-- Botón de conexion al puerto serie
-const butConnect = document.getElementById('butConnect');
+    //-- Mensaje de error: Puerto serie no soportado
+    this.notSupported = document.getElementById(msg_serialId);
 
-const led0 = new Led("led0")
-const led1 = new Led("led1")
+    //-- Botón de conexion al puerto serie
+    this.butSerial = document.getElementById(butSerialId);
 
+    //-- Comprobar si el navegador soporta puerto serie
+    if ('serial' in navigator) {
 
-//------------------------------------------------------
-//-- PUNTO DE ENTRADA
-//------------------------------------------------------
-document.addEventListener('DOMContentLoaded', () => {
+      //-- Mantener oculto el mensaje de error
+      this.notSupported.hidden = true
 
-  console.log("HOLA????");
-
-  //-- RETROLLAMADA DEL BOTON DE CONEXION
-  butConnect.addEventListener('click', clickConnect);
-
-  //-- Comprobar si el navegador soporta puerto serie
-  if ('serial' in navigator) {
-
-    //-- Mantener oculto el mensaje de error
-    notSupported.hidden = true
-
-    //-- Activar el boton de conectar
-    butConnect.disabled = false;
-
-  }
-});
-
-
-//---------------------------------------------------------
-//-- SE HA APRETADO EL BOTON DE conectar
-//----------------------------------------------------------
-
-async function clickConnect() {
-
-  //-- Si ya estaba abierto el puerto serie
-  //-- Lo cerramos
-  if (port) {
-    await disconnect();
-
-    //-- Cambiar el estado de la interfaz
-    butConnect.textContent = '🔌Conectar';
-
-    //inputBit.classList.add("w3-opacity-max");
-
-    //displaybit.classList.add("w3-opacity-max");
-
-
-    return;
-  }
-
-  //-- Abrir puerto serie y conectarse
-  await connect();
-
-  //-- Activar la interfaz
-  butConnect.textContent = '🔌Desconectar';
-  //a0.disabled = false;
-  //a1.disabled = false;
-  //inputBit_a.classList.remove("w3-opacity-max")
-  //b0.disabled = false;
-  //b1.disabled = false;
-  //inputBit_b.classList.remove("w3-opacity-max")
-  //displaybit.classList.remove("w3-opacity-max")
-
-  led1.on()
-
-  boton.onclick = () => {
-    led0.toggle();
-    led1.toggle();
-  }
-
-/*
-  //-- Boton de Bit a 0 pulsado
-  a0.onclick = () => {
-    writeToStream('a0\n');
-    inputBit_a.innerHTML = '0';
-  }
-
-  //-- Boton de Bit a 1 pulsado
-  a1.onclick = () => {
-    writeToStream('a1\n');
-    inputBit_a.innerHTML = '1';
-  }
-
-  //-- Boton de Bit a 0 pulsado
-  b0.onclick = () => {
-    writeToStream('b0\n');
-    inputBit_b.innerHTML = '0';
-  }
-
-  //-- Boton de Bit a 1 pulsado
-  b1.onclick = () => {
-    writeToStream('b1\n');
-    inputBit_b.innerHTML = '1';
-  }
-*/
-}
-
-
-//--------------------------------
-//-- Abrir el puerto serie
-//--------------------------------
-async function connect() {
-
-  //-- Solicitar puerto serie al usuario
-  //-- Se queda esperando hasta que el usuario ha seleccionado uno
-  port = await navigator.serial.requestPort();
-
-  // - Abrir el puerto serie. Se espera hasta que este abierto
-  await port.open({ baudrate: 115200 });
-
-  //-- Configurar el stream de salida
-  //-- Es outputStream. Antes se pasa por un codificador de texto
-  //-- y de ahí sale por el puerto serie
-  const encoder = new TextEncoderStream();
-  outputDone = encoder.readable.pipeTo(port.writable);
-  outputStream = encoder.writable;
-
-  //-- Configurar el stream de entrada. Se pasa primero por un
-  //-- decodificador de texto y luego se reciben los caracteres
-  let decoder = new TextDecoderStream();
-  inputDone = port.readable.pipeTo(decoder.writable);
-
-  //-- La informacion se lee desde el lector reader
-  reader = decoder.readable.getReader();
-
-  //-- Bucle principal de lectura
-  //-- Se procesan los caracteres recibidos
-  //-- y se escriben en el estado del boton en la gui
-  readLoop();
-}
-
-//-----------------------------------
-//-- Cerrar el puerto serie
-//-----------------------------------
-async function disconnect() {
-
-  // -- Cerrar el stream de entrada (lector)
-    if (reader) {
-      await reader.cancel();
-      await inputDone.catch(() => {});
-      reader = null;
-      inputDone = null;
+      //-- Activar el boton de conectar
+      this.butSerial.disabled = false;
     }
 
-  // -- Cerrar el stream de salida
-  if (outputStream) {
-    await outputStream.getWriter().close();
-    await outputDone;
-    outputStream = null;
-    outputDone = null;
+    //-- RETROLLAMADA DEL BOTON DE CONEXION
+    this.butSerial.addEventListener('click', this.clickConnect.bind(this));
   }
 
-  // -- Cerrar el puerto serie
-  await port.close();
-  port = null;
+  //-- Retrollamada del botón de Conexión al puerto serie
+  async clickConnect() {
+
+    //-- Si ya estaba abierto el puerto serie
+    //-- Lo cerramos
+    if (this.port) {
+      await this.disconnect();
+
+      //-- Cambiar el estado de la interfaz
+      this.butSerial.textContent = '🔌Conectar';
+
+      return;
+    }
+
+    //-- Abrir puerto serie y conectarse
+    await this.connect();
+
+    //-- Activar la interfaz
+    this.butSerial.textContent = '🔌Desconectar';
+  }
+
+  //---------------------------------------------------------
+  //-- SE HA APRETADO EL BOTON DE conectar
+  //----------------------------------------------------------
+
+  async connect() {
+    //-- Solicitar puerto serie al usuario
+    //-- Se queda esperando hasta que el usuario ha seleccionado uno
+    sp.port = await navigator.serial.requestPort();
+
+    // - Abrir el puerto serie. Se espera hasta que este abierto
+    await sp.port.open({ baudrate: 115200 });
+
+    //-- Configurar el stream de salida
+    //-- Es outputStream. Antes se pasa por un codificador de texto
+    //-- y de ahí sale por el puerto serie
+    const encoder = new TextEncoderStream();
+    sp.outputDone = encoder.readable.pipeTo(sp.port.writable);
+    sp.outputStream = encoder.writable;
+
+    //-- Configurar el stream de entrada. Se pasa primero por un
+    //-- decodificador de texto y luego se reciben los caracteres
+    let decoder = new TextDecoderStream();
+    sp.inputDone = sp.port.readable.pipeTo(decoder.writable);
+
+    //-- La informacion se lee desde el lector reader
+    this.reader = decoder.readable.getReader();
+
+    //-- Bucle principal de lectura
+    //-- Se procesan los caracteres recibidos
+    //-- y se escriben en el estado del boton en la gui
+    readLoop();
+  }
+
+  //-----------------------------------
+  //-- Cerrar el puerto serie
+  //-----------------------------------
+  async disconnect() {
+
+    // -- Cerrar el stream de entrada (lector)
+      if (this.reader) {
+        await this.reader.cancel();
+        await this.inputDone.catch(() => {});
+        this.reader = null;
+        this.inputDone = null;
+      }
+
+    // -- Cerrar el stream de salida
+    if (this.outputStream) {
+      await this.outputStream.getWriter().close();
+      await this.outputDone;
+      this.outputStream = null;
+      this.outputDone = null;
+    }
+
+    // -- Cerrar el puerto serie
+    await this.port.close();
+    this.port = null;
+  }
 
 }
+
+const sp = new SerialPanel('msg_serial', 'butSerial')
+
+const led0 = new Led("led0")
+
+
 
 function convert_bit(value)
 {
@@ -199,7 +146,7 @@ async function readLoop() {
   while (true) {
 
     //-- Leer el valor del stream de entrada
-    const { value, done } = await reader.read(3);
+    const { value, done } = await sp.reader.read(3);
 
     console.log("Redeived: " + value);
 
@@ -213,7 +160,7 @@ async function readLoop() {
     //-- El stream se ha eliminado
     if (done) {
       console.log('[readLoop] DONE', done);
-      reader.releaseLock();
+      sp.reader.releaseLock();
       break;
     }
   }

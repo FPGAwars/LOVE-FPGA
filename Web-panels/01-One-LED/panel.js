@@ -1,5 +1,5 @@
 //-- Identificador de la variable bit a monitorizar en el LED0
-const VARBIT0 = 'b'
+const VARBIT0 = 'a'
 
 //-- Obtener el panel serie
 //-- Se pasan como argumentos los identificadores HTML del mensaje de

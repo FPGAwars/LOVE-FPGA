@@ -1,7 +1,7 @@
 // -- Panel serie, para acceder al puerto serie
 class SerialPanel {
-  //-- serial_received: Funcion de retrollamada de datos recibidos
-  constructor(msg_serialId, butSerialId, serial_received) {
+  //-- serial_cmd: Funcion de retrollamada de comando recibido
+  constructor(msg_serialId, butSerialId, serial_cmd) {
 
     //-- Puerto serie
     this.port = null;
@@ -18,14 +18,17 @@ class SerialPanel {
     //-- Stream de entrada
     this.inputStream = null;
 
+    //-- Buffer con los datos recibidos del puerto serie
+    this.buff = "";
+
     //-- Mensaje de error: Puerto serie no soportado
     this.notSupported = document.getElementById(msg_serialId);
 
     //-- Botón de conexion al puerto serie
     this.butSerial = document.getElementById(butSerialId);
 
-    //-- Función de retrollamada de datos recibidos
-    this.serial_received = serial_received;
+    //-- Función de retrollamada de comando recibido
+    this.serial_cmd = serial_cmd;
 
     //-- Comprobar si el navegador soporta puerto serie
     if ('serial' in navigator) {
@@ -140,11 +143,11 @@ class SerialPanel {
         break;
       }
 
-      console.log("Redeived: " + value);
+      //--Debug
+      //console.log("Redeived: " + value);
 
-      //-- Hay un valor correcto: Mostrarlo en la gui
+      //--Llamar a la funcion de procesado de datos
       if (value) {
-        //-- Llamar a la función de retrollamada
         this.serial_received(value)
       }
     }
@@ -166,6 +169,38 @@ class SerialPanel {
 
     //-- Liberar el stream
     writer.releaseLock();
+  }
+
+  //-- Función de retrollamada de datos recibidos
+  serial_received(data)
+  {
+    //-- Los datos que llegan se añaden al buffer
+    this.buff += data;
+
+    //-- Si en el buffer NO hay caracteres \n entonces
+    //-- no ha llegado un comando completo. No hacer nada
+    if (!this.buff.includes('\n'))
+      return
+
+    //-- Mientras haya caracteres \n en el buffer, hay comandos
+    //-- pendientes de procesar
+    while (this.buff.includes('\n')) {
+
+      //----- Obtener el comando
+      //--- En cmd se mete el comando
+      //--- En buff se deja el resto
+      //-- Detectar el caracter final del comando: \n
+      let lf = this.buff.indexOf('\n');
+      let cmd = this.buff.slice(0, lf);
+      this.buff = this.buff.substring(lf+1);
+
+      //-- Procesar el comando recibido
+
+      //console.log("Buff: " + this.buff + " Lenght: " + this.buff.length)
+      //-- Funcion de retrollamada de procesamiento del comando
+      this.serial_cmd(cmd);
+
+    }
   }
 
 

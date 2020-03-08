@@ -46,7 +46,7 @@
             "clock": false
           },
           "position": {
-            "x": 1072,
+            "x": 984,
             "y": 280
           }
         },
@@ -65,8 +65,8 @@
             "virtual": false
           },
           "position": {
-            "x": 1416,
-            "y": 328
+            "x": 1480,
+            "y": 376
           }
         },
         {
@@ -86,7 +86,7 @@
           "id": "b17ae06f-0008-4ef4-a344-ba102fcc663b",
           "type": "2107ac7691a91a762c2d0be100faaabd6189973a",
           "position": {
-            "x": 1232,
+            "x": 1144,
             "y": 264
           },
           "size": {
@@ -121,6 +121,38 @@
             "width": 520,
             "height": 96
           }
+        },
+        {
+          "id": "664db8fa-308b-4607-a684-80f6da3d4f58",
+          "type": "basic.info",
+          "data": {
+            "info": "Button state",
+            "readonly": true
+          },
+          "position": {
+            "x": 1256,
+            "y": 240
+          },
+          "size": {
+            "width": 128,
+            "height": 32
+          }
+        },
+        {
+          "id": "9336976f-5d07-4228-8361-bd5724392371",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the state on  \nthe LED",
+            "readonly": true
+          },
+          "position": {
+            "x": 1464,
+            "y": 328
+          },
+          "size": {
+            "width": 176,
+            "height": 56
+          }
         }
       ],
       "wires": [
@@ -144,7 +176,12 @@
             "block": "62832550-d822-4a5c-afa6-9855c55273a2",
             "port": "in"
           },
-          "vertices": []
+          "vertices": [
+            {
+              "x": 1312,
+              "y": 328
+            }
+          ]
         },
         {
           "source": {

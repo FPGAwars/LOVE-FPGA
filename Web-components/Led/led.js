@@ -23,6 +23,7 @@ class Led {
   }
 
   set(state) {
+    if (state == null) return;
     if (state == '1') {
       this.on();
     } else if (state == '0') {

@@ -54,7 +54,7 @@
           "id": "c945ff43-2950-4b33-9e27-8f96781d4c5d",
           "type": "basic.input",
           "data": {
-            "name": "Boton",
+            "name": "Button",
             "pins": [
               {
                 "index": "0",
@@ -156,7 +156,7 @@
           "id": "c59c8242-b4a5-4b61-84e5-a3c5e1e06bbc",
           "type": "basic.input",
           "data": {
-            "name": "Boton",
+            "name": "Button",
             "pins": [
               {
                 "index": "0",
@@ -253,7 +253,7 @@
             "readonly": true
           },
           "position": {
-            "x": 896,
+            "x": 952,
             "y": 168
           },
           "size": {

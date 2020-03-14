@@ -12,6 +12,9 @@ class Switch {
     //-- Funcion de retrollamada
     this.onswitch = onswitch;
 
+    //-- Cargar elemento de audio
+    this.click = new Audio('click.mp3');
+
     //-- Doble click
     /*
     this.element.ondblclick = (ev) => {
@@ -29,8 +32,15 @@ class Switch {
     }
   }
 
+  //-- Hacer que suene el click
+  make_click() {
+    this.click.currentTime = 0;
+    this.click.play();
+  }
+
   toggle() {
     this.element.classList.toggle(this.CLASS_ON);
+    this.make_click();
     this.onswitch(this.get());
   }
 

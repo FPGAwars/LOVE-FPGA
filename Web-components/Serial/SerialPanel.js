@@ -156,10 +156,15 @@ class SerialPanel {
   //----------------------------------------
   //-- Escritura por el puerto serie
   //----------------------------------------
-  serial_write(cmd) {
+  write(cmd) {
+
+    //-- Si el puerto serie no está abierto se retorna
+    if (!this.port) {
+      return;
+    }
 
     //-- Obtener el escritor para poder enviar datos de salida
-    const writer = outputStream.getWriter();
+    const writer = this.outputStream.getWriter();
 
     //-- Enviar la cadena pasada como parametro
     writer.write(cmd);

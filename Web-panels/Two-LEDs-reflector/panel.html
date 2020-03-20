@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>TWO LEDs Panel</title>
+    <link rel="stylesheet" href="w3.css">
+    <link rel="stylesheet" href="../../Web-components/Led/led.css">
+    <script src="../../Web-components/Bus/BusReflector.js"></script>
+    <script src="../../Web-components/Led/led.js"></script>
+    <script src="panel.js" defer> </script>
+  </head>
+  <body>
+
+    <!-- Boton de conectar -->
+    <div class="w3-container w3-margin">
+      <div class="w3-bar">
+         <input type="text" id="reflector-ip" value="" placeholder="Reflector server IP">
+        <button class="w3-bar-item w3-button w3-pale-green" id="butSerial" type="button">🔌Conectar</button>
+      </div>
+    </div>
+
+  
+    <!-- LED -->
+    <div class="w3-container w3-border">
+      <div class="Led" id="led0"></div>
+      <div class="Led" id="led1"></div>
+    </div>
+
+  </body>
+</html>

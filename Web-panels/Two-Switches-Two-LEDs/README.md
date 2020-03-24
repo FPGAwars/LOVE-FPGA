@@ -1,4 +1,4 @@
-## Panel with ONE Switch
+## Panel with TWO Switches and TWO LEDs
 
 ![](wiki/panel-01.png)
 

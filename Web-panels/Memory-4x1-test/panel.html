@@ -3,13 +3,15 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Test Panel</title>
+    <title>Memory TEST Panel</title>
     <link rel="stylesheet" href="w3.css">
     <link rel="stylesheet" href="../../Web-components/Led/led.css">
     <link rel="stylesheet" href="../../Web-components/Switch/switch.css">
+    <link rel="stylesheet" href="../../Web-components/PushButton/pushbutton.css">
     <script src="../../Web-components/Serial/SerialPanel.js"></script>
     <script src="../../Web-components/Led/led.js"></script>
-      <script src="../../Web-components/Switch/switch.js"></script>
+    <script src="../../Web-components/Switch/switch.js"></script>
+    <script src="../../Web-components/PushButton/pushbutton.js"></script>
     <script src="panel.js" defer> </script>
   </head>
   <body>
@@ -37,22 +39,41 @@
       </div>
     </div>
 
-    <!-- SWITCHES -->
-    <div class="w3-container w3-border">
-      <div class="Switch" id="swa"></div>
-      <div class="Switch" id="swb"></div>
-      <div class="Switch" id="swc"></div>
-      <div class="Switch" id="swd"></div>
+    <div class="w3-card-4 w3-margin">
+      <header class="w3-container w3-blue">
+        <h1>Memory inputs</h1>
+      </header>
+
+      <div class="w3-row">
+        <div class="w3-third w3-center">
+          <h4>Address</h4>
+          <div class="Switch" id="swa"></div>
+          <div class="Switch" id="swb"></div>
+        </div>
+
+        <div class="w3-third w3-center">
+          <h4>Data</h4>
+          <div class="Switch" id="swc"></div>
+        </div>
+
+        <div class="w3-third w3-center">
+          <h4>Write</h4>
+          <div class="Pushbutton" id="swd"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="w3-card w3-margin">
+      <header class="w3-container w3-green">
+        <h1>Memory output</h1>
+      </header>
+      <!-- LEDs -->
+      <div class="w3-container w3-border w3-center">
+        <div class="Led" id="led0"></div>
+      </div>
     </div>
 
 
-    <!-- LEDs -->
-    <div class="w3-container w3-border">
-      <div class="Led" id="led0"></div>
-      <div class="Led" id="led1"></div>
-      <div class="Led" id="led2"></div>
-      <div class="Led" id="led3"></div>
-    </div>
 
   </body>
 </html>

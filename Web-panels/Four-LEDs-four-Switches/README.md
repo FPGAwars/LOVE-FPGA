@@ -1,4 +1,4 @@
-## Panel with TWO LEDs
+## Panel with FOUR LEDS and FOUR Swtiches
 
 ![](wiki/panel-01.png)
 

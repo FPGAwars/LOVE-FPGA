@@ -1,4 +1,4 @@
-## Panel with FOUR LEDS and FOUR Swtiches
+## TEST panel for a 4x1 Memory
 
 ![](wiki/panel-01.png)
 

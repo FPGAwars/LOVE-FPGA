@@ -26,7 +26,7 @@ class PushButton {
     this.element.onmouseup = (ev) => {
       ev.preventDefault();
       ev.stopPropagation();
-      this.make_click();
+      //this.make_click();
       this.off();
     }
 

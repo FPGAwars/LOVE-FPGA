@@ -43,8 +43,14 @@ class SerialPanel {
     //-- RETROLLAMADA DEL BOTON DE CONEXION
     this.butSerial.addEventListener('click', this.clickConnect.bind(this));
 
+    //-- Inicializar la retrollamada de conexion
+    //-- La establece el usuario
     this.onconnect = null;
+
+    //-- Inicializar la retrollamada de desconexion
+    this.ondisconnect = null;
   }
+
 
   //-- Retrollamada del botón de Conexión al puerto serie
   async clickConnect() {
@@ -52,6 +58,17 @@ class SerialPanel {
     //-- Si ya estaba abierto el puerto serie
     //-- Lo cerramos
     if (this.port) {
+
+
+      //-- Funcion de retrollamada de desconexion
+      //-- Se llama antes de quitar la conexion por si
+      //-- el usuario quere enviar antes algún comando
+      //-- TODO
+      if (this.ondisconnect) {
+        console.log("DEBUG: Serial panel: Llamar a retrollamada desconexion");
+        this.ondisconnect()
+      }
+
       await this.disconnect();
 
       //-- Cambiar el estado de la interfaz
@@ -65,6 +82,15 @@ class SerialPanel {
 
     //-- Activar la interfaz
     this.butSerial.textContent = '🔌Desconectar';
+
+    //-- Llamar a la funcion de retrollamada de puerto abierto
+    //-- (si estaba definida)
+    if (this.onconnect) {
+        //-- Debug
+        console.log("Debug: Serial Panel: Conexion on!");
+        this.onconnect();
+    }
+
   }
 
   //---------------------------------------------------------
@@ -98,14 +124,6 @@ class SerialPanel {
     //-- Se procesan los caracteres recibidos
     //-- y se escriben en el estado del boton en la gui
     this.readLoop();
-
-    //-- Llamar a la funcion de retrollamada de puerto abierto
-    //-- (si estaba definida)
-    if (this.onconnect) {
-        //-- Debug
-        console.log("Debug: Serial Panel: Conexion on!");
-        this.onconnect();
-    }
 
   }
 

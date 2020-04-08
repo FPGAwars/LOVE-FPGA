@@ -1,7 +1,6 @@
 //-- Variable controlada por el switch
 const SW_VAR = "a"
 
-
 //-- Obtener el panel serie
 //-- Se pasan como argumentos los identificadores HTML del mensaje de
 //-- deteccion del puerto serie y del botón de conectar
@@ -40,3 +39,6 @@ function toggle(s)
   //-- Enviar comando
   sp.write(SW_VAR + s + "\n");
 }
+
+//-- Debug...
+console.log("Listo!!!!");

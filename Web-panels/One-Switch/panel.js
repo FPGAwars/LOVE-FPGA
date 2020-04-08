@@ -1,25 +1,21 @@
+//-- Variable controlada por el switch
+const SW_VAR = "a"
+
+
 //-- Obtener el panel serie
 //-- Se pasan como argumentos los identificadores HTML del mensaje de
 //-- deteccion del puerto serie y del botón de conectar
-//-- El último es la función de retrollamada de cuando se recibe un
-//-- comando
-const sp = new SerialPanel('msg_serial', 'butSerial', serial_cmd)
+const sp = new SerialPanel('msg_serial', 'butSerial')
 
+//-- Crear el objeto switch
+sw = new Switch("sw", toggle, "click");
 
-sw = new Switch("sw", toggle);
-
+//-- Función de retrollamada del switch
 function toggle(s)
 {
-  console.log("Toggle!!!!: " + s);
-  sp.write("a" + s + "\n");
-}
+  //-- Debug
+  //console.log("Toggle!!!!: " + s);
 
-//-- Funcion para procesar los comandos recibidos
-//-- El comando recibido no incluye el \n final
-//-- (el modulo serialPanel lo ha quitado)
-function serial_cmd(cmd)
-{
-  //-- Degbug
-  console.log("Comand: " + cmd + " Length: " + cmd.length);
-
+  //-- Enviar comando
+  sp.write(SW_VAR + s + "\n");
 }

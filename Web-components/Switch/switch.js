@@ -2,7 +2,7 @@
 //-- Para activar el switch se hace que pertenezca a la clase switch_on
 
 class Switch {
-  constructor(swid, onswitch) {
+  constructor(swid, onswitch, audioid) {
     this.element = document.getElementById(swid)
 
     //-- Clase para activar el switch
@@ -12,8 +12,9 @@ class Switch {
     //-- Funcion de retrollamada
     this.onswitch = onswitch;
 
-    //-- Cargar elemento de audio
-    this.click = new Audio('click.mp3');
+    //-- Cargar elemento de audio, si se le ha pasado
+    if (audioid)
+      this.click = document.getElementById(audioid)
 
     //-- Doble click
     /*
@@ -34,8 +35,10 @@ class Switch {
 
   //-- Hacer que suene el click
   make_click() {
-    this.click.currentTime = 0;
-    this.click.play();
+    if (this.click) {
+      this.click.currentTime = 0;
+      this.click.play();
+    }
   }
 
   toggle() {

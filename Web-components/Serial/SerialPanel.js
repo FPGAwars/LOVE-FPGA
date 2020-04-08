@@ -42,6 +42,8 @@ class SerialPanel {
 
     //-- RETROLLAMADA DEL BOTON DE CONEXION
     this.butSerial.addEventListener('click', this.clickConnect.bind(this));
+
+    this.onconnect = null;
   }
 
   //-- Retrollamada del botón de Conexión al puerto serie
@@ -96,6 +98,15 @@ class SerialPanel {
     //-- Se procesan los caracteres recibidos
     //-- y se escriben en el estado del boton en la gui
     this.readLoop();
+
+    //-- Llamar a la funcion de retrollamada de puerto abierto
+    //-- (si estaba definida)
+    if (this.onconnect) {
+        //-- Debug
+        console.log("Debug: Serial Panel: Conexion on!");
+        this.onconnect();
+    }
+
   }
 
   //-----------------------------------

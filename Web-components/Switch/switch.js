@@ -90,4 +90,9 @@ class Switch {
   enable() {
     this.element.classList.remove(this.CLASS_DISABLED);
   }
+
+  //-- Desactivar el switch
+  disable() {
+    this.element.classList.add(this.CLASS_DISABLED);
+  }
 }

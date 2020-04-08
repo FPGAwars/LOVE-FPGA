@@ -19,3 +19,10 @@
   background: url(img/switch_on.png);
   background-repeat: no-repeat;
 }
+
+.switch_disabled {
+  background: url(img/switch_off.png);
+  background-repeat: no-repeat;
+  cursor: not-allowed;
+  opacity: 0.4;
+}

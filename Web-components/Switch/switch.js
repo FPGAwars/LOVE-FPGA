@@ -5,9 +5,12 @@ class Switch {
   constructor(swid, onswitch, audioid) {
     this.element = document.getElementById(swid)
 
-    //-- Clase para activar el switch
-    //-- Definida en switch.css
-    this.CLASS_ON="switch_on";
+    //-- Clases definidas en switch.css:
+    //-- Para activar el switch
+    this.CLASS_ON = "switch_on";
+
+    //-- Para desactivar el switch
+    this.CLASS_DISABLED = "switch_disabled";
 
     //-- Funcion de retrollamada
     this.onswitch = onswitch;
@@ -28,6 +31,15 @@ class Switch {
     this.element.onclick = (ev) => {
       ev.preventDefault();
       ev.stopPropagation();
+
+
+      //-- Comprobar si el elemento está deshabilitado
+      if (this.element.classList.contains(this.CLASS_DISABLED)) {
+        //console.log("Disabled!!");
+        return;
+      }
+
+      //-- Accionar el switch
       this.toggle();
 
     }
@@ -72,5 +84,10 @@ class Switch {
     } else {
       return "0"
     }
+  }
+
+  //-- Activar el switch
+  enable() {
+    this.element.classList.remove(this.CLASS_DISABLED);
   }
 }

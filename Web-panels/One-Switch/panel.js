@@ -16,6 +16,9 @@ sp.onconnect = () => {
 
   //-- Cambiar el estado del switch a enable
   sw.enable()
+
+  //-- Al arrancar enviamos el estado a 0
+  sw.off();
 }
 
 sp.ondisconnect = () => {

@@ -35,21 +35,33 @@
       y pincha en ENABLE</p>
     </div>
 
-    <!-- Boton de conectar -->
-    <div class="w3-container">
+    <!-- Panel de control LOVE -->
+    <div class="w3-card-4 w3-margin w3-round-large">
 
-        <p>
-        <button class="w3-button w3-pale-green w3-round-large" type="button" id="butSerial" disabled>🔌Conectar</button>
-        <button class="w3-button w3-yellow w3-round-large " id="butReset" disabled>↪ Reset</button>
-        <button class="w3-bar-item w3-button w3-yellow w3-round-large " id="butSync" disabled>⤵ Sync</button>
-        </p>
+      <header class="w3-container w3-grey w3-text-white">
+        <h5>LOVE Controls</h5>
+      </header>
 
+      <!-- Botones de gestion del panel -->
+      <div class="w3-container">
+          <p>
+          <button class="w3-button w3-pale-green w3-round-large" type="button" id="butSerial" disabled>🔌Conectar</button>
+          <button class="w3-button w3-yellow w3-round-large " id="butReset" disabled>↪ Reset</button>
+          <button class="w3-bar-item w3-button w3-yellow w3-round-large " id="butSync" disabled>⤵ Sync</button>
+          </p>
+      </div>
     </div>
 
-    <!-- LED -->
-    <div class="w3-container w3-border">
-      <div class="Switch switch_disabled" id="sw"></div>
-    </div>
+   <!-- ENTRADAS del circuito -->
+   <div class="w3-card-4 w3-margin w3-round-large">
+     <header class="w3-container w3-blue w3-text-white">
+       <h5><b>INPUTS</b></h5>
+     </header>
+       <!-- Swtich -->
+     <div class="w3-container">
+       <div class="Switch switch_disabled" id="sw"></div>
+     </div>
+   </div>
 
   </body>
 </html>

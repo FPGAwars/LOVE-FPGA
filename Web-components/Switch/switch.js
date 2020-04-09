@@ -2,8 +2,23 @@
 //-- Para activar el switch se hace que pertenezca a la clase switch_on
 
 class Switch {
-  constructor(swid, onswitch, audioid) {
-    this.element = document.getElementById(swid)
+  constructor(swid, onswitch) {
+    //-- Cadena que identifica el sonido de clic en el HTML
+    this.CLICK_ID = "click"
+
+    //-- Si swid es una cadena, representa el identificador
+    //-- del switch
+    if (typeof(swid)=="string") {
+      this.element = document.getElementById(swid);
+      console.log("Es STRING!");
+    }  else if (typeof(swid)=="object") {
+      this.element = swid;
+      console.log("Es objeto!");
+    } else return;
+
+    //-- El ultimo caracter del identificador es la variable asociada
+    //-- al switch
+    this.varid = this.element.id[this.element.id.length-1];
 
     //-- Clases definidas en switch.css:
     //-- Para activar el switch
@@ -15,9 +30,8 @@ class Switch {
     //-- Funcion de retrollamada
     this.onswitch = onswitch;
 
-    //-- Cargar elemento de audio, si se le ha pasado
-    if (audioid)
-      this.click = document.getElementById(audioid)
+    //-- Cargar elemento de audio
+    this.click = document.getElementById(this.CLICK_ID)
 
     //-- Doble click
     /*
@@ -53,20 +67,34 @@ class Switch {
     }
   }
 
+  callback() {
+    //-- Llamar a la funcion de retrollamada
+    //-- Se pasa como parametros el identificador de la variable
+    //-- y el valor del swtich
+    if (this.onswitch)
+      this.onswitch(this.varid, this.get());
+  }
+
   toggle() {
     this.element.classList.toggle(this.CLASS_ON);
     this.make_click();
-    this.onswitch(this.get());
+
+    //-- Llamar a la funcion de retrollamada
+    this.callback();
   }
 
   on() {
     this.element.classList.add(this.CLASS_ON);
-    this.onswitch(this.get());
+
+    //-- Llamar a la funcion de retrollamada
+    this.callback();
   }
 
   off() {
     this.element.classList.remove(this.CLASS_ON);
-    this.onswitch(this.get());
+
+    //-- Llamar a la funcion de retrollamada
+    this.callback();
   }
 
   set(state) {

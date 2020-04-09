@@ -1,7 +1,16 @@
 // -- Panel serie, para acceder al puerto serie
+
 class SerialPanel {
   //-- serial_cmd: Funcion de retrollamada de comando recibido
-  constructor(msg_serialId, butSerialId, serial_cmd) {
+  constructor(serial_cmd) {
+
+    //----- Identificadores de elementos que deben estar en HTML
+    //-- Mensaje que aparece cuando el navegador no
+    //-- soporta puerto serie
+    this.MSG_SERIAL_ID = 'msg_serial';
+
+    //-- Identificador del boton de conectar
+    this.BUTSERIAL = 'butSerial';
 
     //-- Puerto serie
     this.port = null;
@@ -22,10 +31,10 @@ class SerialPanel {
     this.buff = "";
 
     //-- Mensaje de error: Puerto serie no soportado
-    this.notSupported = document.getElementById(msg_serialId);
+    this.notSupported = document.getElementById(this.MSG_SERIAL_ID);
 
     //-- Botón de conexion al puerto serie
-    this.butSerial = document.getElementById(butSerialId);
+    this.butSerial = document.getElementById(this.BUTSERIAL);
 
     //-- Función de retrollamada de comando recibido
     this.serial_cmd = serial_cmd;

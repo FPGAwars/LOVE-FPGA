@@ -1,18 +1,25 @@
-//-- Variable controlada por el switch
-const SW_VAR = "a"
 
 //-- Obtener el panel serie
-//-- Se pasan como argumentos los identificadores HTML del mensaje de
-//-- deteccion del puerto serie y del botón de conectar
-const sp = new SerialPanel('msg_serial', 'butSerial')
+//-- Se le pasa la funcion de retrollamada nula:
+//-- en este ejemplo no se recibe nada
+const sp = new SerialPanel(()=>{})
 
 //-- Obtener los botones de Reset y Sync
 const butReset = document.getElementById("butReset");
 const butSync = document.getElementById("butSync");
 
+//-- Obtener el switch del html
+//-- En este panel solo se usa un switch. Obtener el primero que haya
+const sw_els = document.getElementsByClassName("Switch");
+let sw_el = (sw_els.length >= 1) ? sw_els[0] : null;
 
 //-- Crear el objeto switch
-sw = new Switch("sw", toggle, "click");
+sw = new Switch(sw_el, toggle);
+
+//-- El elemento previo al switch es la etiqueta
+//-- situada encima. Ponemos el nombre de la variable que acciona el switch
+const sw_label = sw_el.previousElementSibling;
+sw_label.innerHTML = "<b>" + sw.varid + "</b>"
 
 //-- Establecer la funcion de retrollamada cuando
 //-- el puerto serie se ha abierto
@@ -59,17 +66,22 @@ butReset.onclick = ()=> {
 //-- Función de retrollamada del botón de Sync
 butSync.onclick = () => {
   //-- Enviar el estado actual al hardware
-  toggle(sw.get())
+  sw.callback()
 }
 
 //-- Función de retrollamada del switch
-function toggle(s)
+//-- Parametros:
+//--   * identificador de la variables
+//--   * valor binario
+function toggle(varid, bitvalue)
 {
   //-- Debug
-  console.log("Toggle!!!!: " + s);
+  console.log("Toggle: " + varid + " " + bitvalue);
 
-  //-- Enviar comando
-  sp.write(SW_VAR + s + "\n");
+  //-- Enviar comando al Hardware
+  //-- La trama esta formada por el nombre de la variable
+  //-- su valor en  binario y un salto de linea (3 bytes)
+  sp.write(varid + bitvalue + "\n");
 }
 
 //-- Debug...

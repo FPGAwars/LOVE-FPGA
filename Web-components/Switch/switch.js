@@ -48,7 +48,7 @@ class Switch {
 
 
       //-- Comprobar si el elemento está deshabilitado
-      if (this.element.classList.contains(this.CLASS_DISABLED)) {
+      if (this.disabled()) {
         //console.log("Disabled!!");
         return;
       }
@@ -67,6 +67,11 @@ class Switch {
     }
   }
 
+  //-- Comprobar si el elemento esta deshabilitado
+  disabled() {
+    return this.element.classList.contains(this.CLASS_DISABLED);
+  }
+
   callback() {
     //-- Llamar a la funcion de retrollamada
     //-- Se pasa como parametros el identificador de la variable
@@ -76,6 +81,11 @@ class Switch {
   }
 
   toggle() {
+
+    //-- Si está deshabilitado no se puede modificar su estado
+    if (this.disabled())
+      return
+
     this.element.classList.toggle(this.CLASS_ON);
     this.make_click();
 

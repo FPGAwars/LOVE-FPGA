@@ -84,5 +84,12 @@ function toggle(varid, bitvalue)
   sp.write(varid + bitvalue + "\n");
 }
 
+//-- Retrollamada de las teclas
+window.onkeydown = (e) => {
+  console.log("Tecla!")
+  if (e.key == sw.varid)
+    sw.toggle();
+}
+
 //-- Debug...
 console.log("Listo!!!!");

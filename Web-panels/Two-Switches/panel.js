@@ -27,9 +27,6 @@ for (let sw of switches) {
   sw_label.innerHTML = "<b>" + sw.varid + "</b>"
 }
 
-sw0 = switches[0];
-sw1 = switches[1];
-
 //-- Establecer la funcion de retrollamada cuando
 //-- el puerto serie se ha abierto
 sp.onconnect = () => {
@@ -67,7 +64,6 @@ sp.ondisconnect = () => {
 
     //-- Deshabilitar el switch. El usuario ya no puede
     //-- cambiarlo
-    sw.disable();
     sw.disable();
   }
 

@@ -1,3 +1,4 @@
+console.log("WHAT!!!!!!!");
 
 //-- Obtener el panel serie
 //-- Se le pasa la funcion de retrollamada nula:
@@ -8,25 +9,26 @@ const sp = new SerialPanel(()=>{})
 const butReset = document.getElementById("butReset");
 const butSync = document.getElementById("butSync");
 
-//-- Obtener el switch del html
-//-- En este panel solo se usa un switch. Obtener el primero que haya
-const sw_els = document.getElementsByClassName("Switch");
-//let sw_el = (sw_els.length >= 1) ? sw_els[0] : null;
-
-const sw_el0 = sw_els[0];
-const sw_el1 = sw_els[1];
+//-- Obtener todos los switches
+const switches_el = document.getElementsByClassName("Switch");
 
 //-- Crear los objetos de los switches
-sw0 = new Switch(sw_el0, toggle0);
-sw1 = new Switch(sw_el1, toggle1);
+let switches = [];
 
-//-- El elemento previo al switch es la etiqueta
-//-- situada encima. Ponemos el nombre de la variable que acciona el switch
-const sw_label0 = sw_el0.previousElementSibling;
-sw_label0.innerHTML = "<b>" + sw0.varid + "</b>"
+for (let item of switches_el) {
+  let sw = new Switch(item, toggle)
+  switches.push(sw);
+}
 
-const sw_label1 = sw_el1.previousElementSibling;
-sw_label1.innerHTML = "<b>" + sw1.varid + "</b>"
+//-- Leer los identificadores de los switches
+//-- y colocarlos en las etiquetas encima de ellos
+for (let sw of switches) {
+  let sw_label = sw.element.previousElementSibling;
+  sw_label.innerHTML = "<b>" + sw.varid + "</b>"
+}
+
+sw0 = switches[0];
+sw1 = switches[1];
 
 //-- Establecer la funcion de retrollamada cuando
 //-- el puerto serie se ha abierto
@@ -37,13 +39,15 @@ sp.onconnect = () => {
   butReset.disabled = false;
   butSync.disabled = false;
 
-  //-- Cambiar el estado del switch a enable
-  sw0.enable()
-  sw1.enable()
+  //-- Cambiar el estado de los swtiches a enable
+  for (let sw of switches) {
 
-  //-- Al arrancar enviamos el estado a 0
-  sw0.off();
-  sw1.off();
+    //-- Cambiar el estado de los swtiches a enable
+    sw.enable()
+
+    //-- Al arrancar enviamos el estado 0 a todos
+    sw.off();
+  }
 
   //-- Llevar el foco al boton de reset
   butReset.focus();
@@ -56,49 +60,44 @@ sp.ondisconnect = () => {
   butReset.disabled = true;
   butSync.disabled = true;
 
-  //-- Apagar el switch, para que el hardware vaya
-  //-- acorde
-  sw0.off();
-  sw1.off();
+  for (let sw of switches) {
+    //-- Apagar el switch, para que el hardware vaya
+    //-- acorde
+    sw.off();
 
-  //-- Deshabilitar el switch. El usuario ya no puede
-  //-- cambiarlo
-  sw0.disable();
-  sw1.disable();
+    //-- Deshabilitar el switch. El usuario ya no puede
+    //-- cambiarlo
+    sw.disable();
+    sw.disable();
+  }
 
 }
 
 //-- Funcion de retrollama del boton de RESET
 butReset.onclick = ()=> {
-  //-- Poner el switch a cero
-  sw0.off();
-  sw1.off();
+  //-- Poner todos los switches a cero
+  for (let sw of switches) {
+    sw.off();
+  }
 }
 
 //-- Función de retrollamada del botón de Sync
 butSync.onclick = () => {
   //-- Enviar el estado actual al hardware
-  sw0.callback()
-  sw1.callback()
+
+  for (let sw of switches) {
+    sw.callback()
+  }
 }
 
 //-- Función de retrollamada del switch
 //-- Parametros:
 //--   * identificador de la variables
 //--   * valor binario
-function toggle0(varid, bitvalue)
+function toggle(varid, bitvalue)
 {
-  //-- Debug
-  console.log("Toggle: " + varid + " " + bitvalue);
 
-  //-- Enviar comando al Hardware
-  //-- La trama esta formada por el nombre de la variable
-  //-- su valor en  binario y un salto de linea (3 bytes)
-  sp.write(varid + bitvalue + "\n");
-}
-
-function toggle1(varid, bitvalue)
-{
+  console.log("Hola????")
   //-- Debug
   console.log("Toggle: " + varid + " " + bitvalue);
 
@@ -111,11 +110,13 @@ function toggle1(varid, bitvalue)
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
   console.log("Tecla!")
-  if (e.key == sw0.varid)
-    sw0.toggle();
 
-  if (e.key == sw1.varid)
-    sw1.toggle();
+  //-- Activar el switch correspondiente segun la tecla
+  //-- pulsada
+  for (let sw of switches) {
+    if (e.key == sw.varid)
+      sw.toggle();
+  }
 }
 
 //-- Debug...

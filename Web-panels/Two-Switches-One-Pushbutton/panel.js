@@ -76,6 +76,7 @@ sp.ondisconnect = () => {
   }
 
   //-- Cambiar estado del pushbutton a disable
+  btn.off();
   btn.disable();
 
 }
@@ -86,6 +87,9 @@ butReset.onclick = ()=> {
   for (let sw of switches) {
     sw.off();
   }
+
+  //-- Poner el pushbutton a cero
+  btn.off();
 }
 
 //-- Función de retrollamada del botón de Sync
@@ -93,8 +97,10 @@ butSync.onclick = () => {
   //-- Enviar el estado actual al hardware
 
   for (let sw of switches) {
-    sw.callback()
+    sw.callback();
   }
+
+  btn.callback();
 }
 
 //-- Función de retrollamada del switch

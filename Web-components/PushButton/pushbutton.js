@@ -47,9 +47,6 @@ class PushButton {
 
       this.make_click();
       this.on();
-
-      //-- Accionar el switch
-      this.toggle();
     }
 
     //-- Botón liberado

@@ -29,6 +29,9 @@ for (let sw of switches) {
   sw_label.innerHTML = "<b>" + sw.varid + "</b>"
 }
 
+let btn_label = btn.element.previousElementSibling;
+btn_label.innerHTML = "<b>" + btn.varid + "</b>"
+
 //-- Establecer la funcion de retrollamada cuando
 //-- el puerto serie se ha abierto
 sp.onconnect = () => {
@@ -47,6 +50,9 @@ sp.onconnect = () => {
     //-- Al arrancar enviamos el estado 0 a todos
     sw.off();
   }
+
+  //-- Cambiar estado del pushbutton a enable
+  btn.enable();
 
   //-- Llevar el foco al boton de reset
   butReset.focus();
@@ -68,6 +74,9 @@ sp.ondisconnect = () => {
     //-- cambiarlo
     sw.disable();
   }
+
+  //-- Cambiar estado del pushbutton a disable
+  btn.disable();
 
 }
 

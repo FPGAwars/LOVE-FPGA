@@ -122,13 +122,26 @@ function toggle(varid, bitvalue)
 
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
-  console.log("Tecla!")
-
   //-- Activar el switch correspondiente segun la tecla
   //-- pulsada
   for (let sw of switches) {
     if (e.key == sw.varid)
       sw.toggle();
+  }
+
+  if (e.key == btn.varid) {
+    //-- Solo se activa el pulsador ni
+    //-- ni no estaba activado previamente
+    //-- Es para evitar el efecto de tecla multiple
+    //-- cuando se deja apretada una tecla
+    if (btn.get() == "0")
+      btn.on();
+  }
+}
+
+window.onkeyup = (e) => {
+  if (e.key == btn.varid) {
+    btn.off();
   }
 }
 

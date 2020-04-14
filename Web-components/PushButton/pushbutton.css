@@ -19,3 +19,10 @@
   background: url(img/pushbutton-off.png);
   background-repeat: no-repeat;
 }
+
+.pushbutton_disabled {
+  background: url(img/pushbutton-off.png);
+  background-repeat: no-repeat;
+  cursor: not-allowed;
+  opacity: 0.4;
+}

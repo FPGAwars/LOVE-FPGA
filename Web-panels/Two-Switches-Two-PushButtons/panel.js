@@ -9,14 +9,17 @@ const sp = new SerialPanel(()=>{})
 const butReset = document.getElementById("butReset");
 const butSync = document.getElementById("butSync");
 
-const btn0 = new PushButton("pbc", toggle);
-const btn1 = new PushButton("pbd", toggle);
-
 //-- Obtener todos los switches
 const switches_el = document.getElementsByClassName("Switch");
 
+//-- Obtener todos los pulsadores
+const switches_el = document.getElementsByClassName("PushButtons");
+
 //-- Crear los objetos de los switches
 let switches = [];
+
+//-- Crear los objetos de los pulsadores
+let pushbtns = [];
 
 for (let item of switches_el) {
   let sw = new Switch(item, toggle)
@@ -30,10 +33,10 @@ for (let sw of switches) {
   sw_label.innerHTML = "<b>" + sw.varid + "</b>"
 }
 
-let btn0_label = btn0.element.previousElementSibling;
-let btn1_label = btn1.element.previousElementSibling;
-btn0_label.innerHTML = "<b>" + btn0.varid + "</b>"
-btn1_label.innerHTML = "<b>" + btn1.varid + "</b>"
+for (let pb of pushbtns) {
+  let pb_label = pb.element.previousElementSibling;
+  pb_label.innerHTML = "<b>" + pb.varid + "</b>"
+}
 
 //-- Establecer la funcion de retrollamada cuando
 //-- el puerto serie se ha abierto
@@ -54,12 +57,15 @@ sp.onconnect = () => {
     sw.off();
   }
 
-  //-- Cambiar estado del pushbutton a enable
-  btn0.off();
-  btn0.enable();
+  //-- Cambiar el estado de los pulsadores a enable
+  for (let pb of pushbtns) {
 
-  btn1.off();
-  btn1.enable();
+    //-- Cambiar el estado de los swtiches a enable
+    pb.enable()
+
+    //-- Al arrancar enviamos el estado 0 a todos
+    pb.off();
+  }
 
   //-- Llevar el foco al boton de reset
   butReset.focus();
@@ -82,12 +88,15 @@ sp.ondisconnect = () => {
     sw.disable();
   }
 
-  //-- Cambiar estado del pushbutton a disable
-  btn0.off();
-  btn0.disable();
+  for (let pb of pushbtns) {
+    //-- Apagar el switch, para que el hardware vaya
+    //-- acorde
+    pb.off();
 
-  btn1.off();
-  btn1.disable();
+    //-- Deshabilitar el switch. El usuario ya no puede
+    //-- cambiarlo
+    pb.disable();
+  }
 
 }
 
@@ -98,9 +107,11 @@ butReset.onclick = ()=> {
     sw.off();
   }
 
-  //-- Poner el pushbutton a cero
-  btn0.off();
-  btn1.off();
+  //-- Poner todos los switches a cero
+  for (let pb of pushbtns) {
+    pb.off();
+  }
+
 }
 
 //-- Función de retrollamada del botón de Sync
@@ -111,8 +122,10 @@ butSync.onclick = () => {
     sw.callback();
   }
 
-  btn0.callback();
-  btn1.callback();
+  for (let pb of pushbts) {
+    pb.callback();
+  }
+
 }
 
 //-- Función de retrollamada del switch
@@ -141,35 +154,28 @@ window.onkeydown = (e) => {
       sw.toggle();
   }
 
-  if (e.key == btn0.varid) {
-    //-- Solo se activa el pulsador ni
-    //-- ni no estaba activado previamente
-    //-- Es para evitar el efecto de tecla multiple
-    //-- cuando se deja apretada una tecla
-    if (btn0.get() == "0") {
-      btn0.on();
+  for (let pb of pushbtns) {
+    if (e.key == pb.varid) {
+      //-- Solo se activa el pulsador
+      //-- si no estaba activado previamente
+      //-- Es para evitar el efecto de tecla multiple
+      //-- cuando se deja apretada una tecla
+      if (pb.get() == "0") {
+        pb.on();
+      }
     }
   }
 
-  if (e.key == btn1.varid) {
-    //-- Solo se activa el pulsador ni
-    //-- ni no estaba activado previamente
-    //-- Es para evitar el efecto de tecla multiple
-    //-- cuando se deja apretada una tecla
-    if (btn1.get() == "0") {
-      btn1.on();
-    }
-  }
-}
-
+//-- Retrollamada de cuando las teclas se sueltan
 window.onkeyup = (e) => {
-  if (e.key == btn0.varid) {
-    btn0.off();
+
+  //-- Comprobar los pulsadores
+  for (let pb of pushbtns) {
+    if (e.key == pb.varid) {
+      pb.off();
+    }
   }
 
-  if (e.key == btn1.varid) {
-    btn1.off();
-  }
 }
 
 //-- Debug...

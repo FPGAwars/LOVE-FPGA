@@ -16,31 +16,34 @@ const switches_el = document.getElementsByClassName("Switch");
 const pushbtns_el = document.getElementsByClassName("Pushbutton");
 
 //-- Crear los objetos de los switches
-let switches = [];
+//let switches = [];
 
 //-- Crear los objetos de los pulsadores
-let pushbtns = [];
+//let pushbtns = [];
 
+//-- Dispositivos de entrada: Switches y pulsadores
+let inputbits = [];
+
+//-- Añadir los switches
 for (let item of switches_el) {
-  let sw = new Switch(item, toggle)
-  switches.push(sw);
+  let sw = new Switch(item, toggle);
+  inputbits.push(sw);
+  //switches.push(sw);
 }
 
+//-- Añadir los pulsadores
 for (let item of pushbtns_el) {
-  let pb = new PushButton(item, toggle)
-  pushbtns.push(pb);
+  let pb = new PushButton(item, toggle);
+  inputbits.push(pb);
+  //pushbtns.push(pb);
 }
 
 //-- Leer los identificadores de los switches
-//-- y colocarlos en las etiquetas encima de ellos
-for (let sw of switches) {
+//-- y pulsadores y colocarlos en las etiquetas
+//-- encima de ellos
+for (let sw of inputbits) {
   let sw_label = sw.element.previousElementSibling;
   sw_label.innerHTML = "<b>" + sw.varid + "</b>"
-}
-
-for (let pb of pushbtns) {
-  let pb_label = pb.element.previousElementSibling;
-  pb_label.innerHTML = "<b>" + pb.varid + "</b>"
 }
 
 //-- Establecer la funcion de retrollamada cuando
@@ -53,23 +56,13 @@ sp.onconnect = () => {
   butSync.disabled = false;
 
   //-- Cambiar el estado de los swtiches a enable
-  for (let sw of switches) {
+  for (let sw of inputbits) {
 
     //-- Cambiar el estado de los swtiches a enable
     sw.enable()
 
     //-- Al arrancar enviamos el estado 0 a todos
     sw.off();
-  }
-
-  //-- Cambiar el estado de los pulsadores a enable
-  for (let pb of pushbtns) {
-
-    //-- Cambiar el estado de los swtiches a enable
-    pb.enable()
-
-    //-- Al arrancar enviamos el estado 0 a todos
-    pb.off();
   }
 
   //-- Llevar el foco al boton de reset
@@ -83,7 +76,7 @@ sp.ondisconnect = () => {
   butReset.disabled = true;
   butSync.disabled = true;
 
-  for (let sw of switches) {
+  for (let sw of inputbits) {
     //-- Apagar el switch, para que el hardware vaya
     //-- acorde
     sw.off();
@@ -93,42 +86,22 @@ sp.ondisconnect = () => {
     sw.disable();
   }
 
-  for (let pb of pushbtns) {
-    //-- Apagar el switch, para que el hardware vaya
-    //-- acorde
-    pb.off();
-
-    //-- Deshabilitar el switch. El usuario ya no puede
-    //-- cambiarlo
-    pb.disable();
-  }
-
 }
 
 //-- Funcion de retrollama del boton de RESET
 butReset.onclick = ()=> {
   //-- Poner todos los switches a cero
-  for (let sw of switches) {
+  for (let sw of inputbits) {
     sw.off();
   }
-
-  //-- Poner todos los switches a cero
-  for (let pb of pushbtns) {
-    pb.off();
-  }
-
 }
 
 //-- Función de retrollamada del botón de Sync
 butSync.onclick = () => {
   //-- Enviar el estado actual al hardware
 
-  for (let sw of switches) {
+  for (let sw of inputbits) {
     sw.callback();
-  }
-
-  for (let pb of pushbtns) {
-    pb.callback();
   }
 
 }
@@ -154,32 +127,37 @@ function toggle(varid, bitvalue)
 window.onkeydown = (e) => {
   //-- Activar el switch correspondiente segun la tecla
   //-- pulsada
-  for (let sw of switches) {
-    if (e.key == sw.varid)
-      sw.toggle();
+  for (let sw of inputbits) {
+
+    //-- Comprobar los switches
+    if (e.key == sw.varid && !sw.disabled())
+
+      if (sw.constructor.name == "Switch")
+        sw.toggle();
+
+      else if (sw.constructor.name == "PushButton")
+        //-- Solo se activa el pulsador
+        //-- si no estaba activado previamente
+        //-- Es para evitar el efecto de tecla multiple
+        //-- cuando se deja apretada una tecla
+        if (sw.get() == "0") {
+          sw.on();
+        }
   }
 
-  for (let pb of pushbtns) {
-    if (e.key == pb.varid) {
-      //-- Solo se activa el pulsador
-      //-- si no estaba activado previamente
-      //-- Es para evitar el efecto de tecla multiple
-      //-- cuando se deja apretada una tecla
-      if (pb.get() == "0") {
-        pb.on();
-      }
-    }
-  }
 }
 
 //-- Retrollamada de cuando las teclas se sueltan
 window.onkeyup = (e) => {
 
   //-- Comprobar los pulsadores
-  for (let pb of pushbtns) {
-    if (e.key == pb.varid) {
-      pb.off();
-    }
+  for (let sw of inputbits) {
+
+    //-- Comprobar solo los pulsadores
+    if (sw.constructor.name == "PushButton")
+      if (e.key == sw.varid && !sw.disabled()) {
+        sw.off();
+      }
   }
 
 }

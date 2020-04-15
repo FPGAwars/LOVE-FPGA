@@ -54,6 +54,12 @@ class PushButton {
       ev.preventDefault();
       ev.stopPropagation();
 
+      //-- Comprobar si el elemento está deshabilitado
+      if (this.disabled()) {
+        //console.log("Disabled!!");
+        return;
+      }
+
       this.off();
     }
 

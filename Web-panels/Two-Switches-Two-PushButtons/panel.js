@@ -1,5 +1,3 @@
-console.log("WHAT!!!!!!!");
-
 //-- Obtener el panel serie
 //-- Se le pasa la funcion de retrollamada nula:
 //-- en este ejemplo no se recibe nada
@@ -15,12 +13,6 @@ const switches_el = document.getElementsByClassName("Switch");
 //-- Obtener todos los pulsadores
 const pushbtns_el = document.getElementsByClassName("Pushbutton");
 
-//-- Crear los objetos de los switches
-//let switches = [];
-
-//-- Crear los objetos de los pulsadores
-//let pushbtns = [];
-
 //-- Dispositivos de entrada: Switches y pulsadores
 let inputbits = [];
 
@@ -28,18 +20,16 @@ let inputbits = [];
 for (let item of switches_el) {
   let sw = new Switch(item, toggle);
   inputbits.push(sw);
-  //switches.push(sw);
 }
 
 //-- Añadir los pulsadores
 for (let item of pushbtns_el) {
   let pb = new PushButton(item, toggle);
   inputbits.push(pb);
-  //pushbtns.push(pb);
 }
 
-//-- Leer los identificadores de los switches
-//-- y pulsadores y colocarlos en las etiquetas
+//-- Leer los identificadores de los elementos
+//-- de entrada y colocarlos en las etiquetas
 //-- encima de ellos
 for (let sw of inputbits) {
   let sw_label = sw.element.previousElementSibling;
@@ -55,10 +45,9 @@ sp.onconnect = () => {
   butReset.disabled = false;
   butSync.disabled = false;
 
-  //-- Cambiar el estado de los swtiches a enable
+  //-- Cambiar el estado de los elementos de entrada a enable
   for (let sw of inputbits) {
 
-    //-- Cambiar el estado de los swtiches a enable
     sw.enable()
 
     //-- Al arrancar enviamos el estado 0 a todos
@@ -76,13 +65,10 @@ sp.ondisconnect = () => {
   butReset.disabled = true;
   butSync.disabled = true;
 
+  //-- Al desconectar, se ponen a cero todos los elementos
+  //-- de entrada y se deshabilitan
   for (let sw of inputbits) {
-    //-- Apagar el switch, para que el hardware vaya
-    //-- acorde
     sw.off();
-
-    //-- Deshabilitar el switch. El usuario ya no puede
-    //-- cambiarlo
     sw.disable();
   }
 
@@ -90,7 +76,7 @@ sp.ondisconnect = () => {
 
 //-- Funcion de retrollama del boton de RESET
 butReset.onclick = ()=> {
-  //-- Poner todos los switches a cero
+  //-- Poner todos los elementos de entrada a 0
   for (let sw of inputbits) {
     sw.off();
   }
@@ -98,22 +84,19 @@ butReset.onclick = ()=> {
 
 //-- Función de retrollamada del botón de Sync
 butSync.onclick = () => {
-  //-- Enviar el estado actual al hardware
 
+  //-- Enviar el estado actual al hardware
   for (let sw of inputbits) {
     sw.callback();
   }
-
 }
 
-//-- Función de retrollamada del switch
+//-- Función de retrollamada de los elementos de entrada
 //-- Parametros:
 //--   * identificador de la variables
 //--   * valor binario
 function toggle(varid, bitvalue)
 {
-
-  console.log("Hola????")
   //-- Debug
   console.log("Toggle: " + varid + " " + bitvalue);
 
@@ -125,16 +108,19 @@ function toggle(varid, bitvalue)
 
 //-- Retrollamada de las teclas
 window.onkeydown = (e) => {
-  //-- Activar el switch correspondiente segun la tecla
-  //-- pulsada
+  //-- Activar el elemento de entrada correspondiente segun
+  //-- la tecla pulsada
   for (let sw of inputbits) {
 
-    //-- Comprobar los switches
+    //-- Si la tecla coincide con la variable del
+    //-- elemento de entrada y está habilitado:
     if (e.key == sw.varid && !sw.disabled())
 
+      //-- En los switches se cambia su posición
       if (sw.constructor.name == "Switch")
         sw.toggle();
 
+      //-- Activar el pulsador
       else if (sw.constructor.name == "PushButton")
         //-- Solo se activa el pulsador
         //-- si no estaba activado previamente

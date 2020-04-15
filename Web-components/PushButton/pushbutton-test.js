@@ -1,10 +1,14 @@
 console.log("Ejecutando JS...");
 
-const btn = new PushButton("btn", change);
+const btn = new PushButton("pba", change);
 const led = new Led("led");
 
-function change(s)
+//-- Funcion de retrollamada del Boton
+function change(varid, bitvalue)
 {
-  console.log("Toggle!!!!: " + s);
-  led.set(s);
+  //-- Debug
+  console.log("Cambio!: " + varid + " " + bitvalue);
+
+  //-- Establecer el estado del led
+  led.set(bitvalue)
 }

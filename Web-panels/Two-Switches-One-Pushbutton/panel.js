@@ -9,7 +9,7 @@ const sp = new SerialPanel(()=>{})
 const butReset = document.getElementById("butReset");
 const butSync = document.getElementById("butSync");
 
-const btn = new PushButton("pbb", toggle);
+const btn = new PushButton("pbc", toggle);
 
 //-- Obtener todos los switches
 const switches_el = document.getElementsByClassName("Switch");

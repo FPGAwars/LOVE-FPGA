@@ -13,7 +13,7 @@ const butSync = document.getElementById("butSync");
 const switches_el = document.getElementsByClassName("Switch");
 
 //-- Obtener todos los pulsadores
-const switches_el = document.getElementsByClassName("PushButtons");
+const pushbtns_el = document.getElementsByClassName("Pushbutton");
 
 //-- Crear los objetos de los switches
 let switches = [];
@@ -24,6 +24,11 @@ let pushbtns = [];
 for (let item of switches_el) {
   let sw = new Switch(item, toggle)
   switches.push(sw);
+}
+
+for (let item of pushbtns_el) {
+  let pb = new PushButton(item, toggle)
+  pushbtns.push(pb);
 }
 
 //-- Leer los identificadores de los switches
@@ -122,7 +127,7 @@ butSync.onclick = () => {
     sw.callback();
   }
 
-  for (let pb of pushbts) {
+  for (let pb of pushbtns) {
     pb.callback();
   }
 
@@ -165,6 +170,7 @@ window.onkeydown = (e) => {
       }
     }
   }
+}
 
 //-- Retrollamada de cuando las teclas se sueltan
 window.onkeyup = (e) => {

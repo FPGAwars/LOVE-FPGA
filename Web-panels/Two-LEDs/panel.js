@@ -7,7 +7,7 @@ const VARBIT1 = 'b'
 //-- deteccion del puerto serie y del botón de conectar
 //-- El último es la función de retrollamada de cuando se recibe un
 //-- comando
-const sp = new SerialPanel('msg_serial', 'butSerial', serial_cmd)
+const sp = new SerialPanel(serial_cmd)
 
 //-- Acceder al LED0 del panel
 const led0 = new Led("led0")

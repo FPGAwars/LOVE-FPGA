@@ -108,7 +108,6 @@ function serial_cmd(cmd)
       led.set(bit);
     }
   }
-
-
-
 }
+
+console.log("Testing....");

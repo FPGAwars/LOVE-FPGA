@@ -9,7 +9,7 @@ const VARBIT0 = 'a'
 const sp = new SerialPanel(serial_cmd)
 
 //-- Acceder al LED0 del panel
-const led0 = new Led("led0")
+const led0 = new Led("leda")
 
 function bitvar(cmd, varname)
 //-- Procesar el comando recibido y comprobar si es una

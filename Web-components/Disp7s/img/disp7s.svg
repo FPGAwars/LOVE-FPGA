@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   sodipodi:docname="disp-7seg-1.svg"
+   inkscape:version="1.0rc1 (09960d6, 2020-04-09)"
+   id="svg8"
+   version="1.1"
+   viewBox="0 0 13.229166 19.84375"
+   height="0.78125in"
+   width="0.52083331in">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     units="in"
+     inkscape:guide-bbox="true"
+     showguides="true"
+     inkscape:window-maximized="1"
+     inkscape:window-y="1107"
+     inkscape:window-x="67"
+     inkscape:window-height="1025"
+     inkscape:window-width="1853"
+     fit-margin-bottom="0"
+     fit-margin-right="0"
+     fit-margin-left="0"
+     fit-margin-top="0"
+     inkscape:snap-global="false"
+     showgrid="false"
+     inkscape:document-rotation="0"
+     inkscape:current-layer="layer1"
+     inkscape:document-units="mm"
+     inkscape:cy="55.861907"
+     inkscape:cx="47.377254"
+     inkscape:zoom="5.6"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     transform="translate(-33.744877,-23.392363)"
+     id="layer1"
+     inkscape:groupmode="layer"
+     inkscape:label="Layer 1">
+    <rect
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       y="23.392363"
+       x="33.744877"
+       height="19.84375"
+       width="13.229166"
+       id="rect955"
+       style="fill:#ffffff;stroke:none;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="segf"
+       d="m 37.31445,26.048909 -0.889115,-0.901149 -0.889118,0.901149 v 6.269335 l 0.889118,0.90115 0.889116,-0.90115 z"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 37.46813,24.105889 -0.889117,0.901149 0.889117,0.901148 h 6.185625 l 0.889117,-0.901148 -0.889117,-0.90115 z"
+       id="sega"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 45.590384,26.048909 -0.889116,-0.901149 -0.889117,0.901149 v 6.269335 l 0.889117,0.90115 0.889116,-0.90115 z"
+       id="segb"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="segg"
+       d="m 37.46813,32.477438 -0.889117,0.901148 0.889117,0.901149 h 6.185625 l 0.889117,-0.901149 -0.889117,-0.90115 z"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 37.31445,40.683699 -0.889115,0.901149 -0.889118,-0.901149 v -6.269335 l 0.889118,-0.901148 0.889116,0.901148 z"
+       id="sege"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccccc" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="segd"
+       d="m 37.46813,42.626721 -0.889117,-0.901149 0.889117,-0.901149 h 6.185625 l 0.889117,0.901149 -0.889117,0.90115 z"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="96.000008"
+       inkscape:export-xdpi="96.000008"
+       inkscape:export-filename="/home/obijuan/Desktop/test-d.png"
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="segc"
+       d="M 45.590384,40.6837 44.701268,41.584848 43.812151,40.6837 v -6.269336 l 0.889117,-0.901148 0.889116,0.901148 z"
+       style="fill:#f9f9f9;stroke:#e6e6e6;stroke-width:0.264584;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+  </g>
+</svg>

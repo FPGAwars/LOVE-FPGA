@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Display 7 seg</title>
+    <link rel="stylesheet" href="../Switch/switch.css">
+    <link rel="stylesheet" href="../Led/led.css">
+    <script src="../Switch/switch.js"></script>
+    <script src="disp7s-test.js" defer> </script>
+  </head>
+  <body>
+
+    <!--  RECURSO: Audio del click del switch -->
+    <audio id="click" src="../../Web-components/media/click.mp3">
+    </audio>
+
+    <!-- Switch: El ultimo digito del identificador debe ser su
+      nombre de variable booleana asocaida
+      -->
+    <div class="Switch" id="swa"></div>
+    <span>&nbsp &nbsp</span>
+
+    <svg id="svg8" width=".40178in" height=".72917in" version="1.1" viewBox="0 0 10.205 18.521"    >
+     <g id="layer1" transform="translate(-35.404 -23.973)" fill="#f9f9f9" stroke="#e6e6e6" stroke-linecap="round" stroke-linejoin="round" stroke-width=".26458">
+      <path id="segf" d="m37.294 26.021-0.87903-0.88826-0.87903 0.88826v6.1796l0.87903 0.88826 0.87903-0.88826z"/>
+      <path id="sega" d="m37.446 24.106-0.87903 0.88826 0.87903 0.88826h6.1154l0.87903-0.88826-0.87903-0.88826z"/>
+      <path id="segb" d="m45.476 26.021-0.87903-0.88826-0.87903 0.88826v6.1796l0.87903 0.88826 0.87903-0.88826z"/>
+      <path id="segg" d="m37.446 32.358-0.87903 0.88826 0.87903 0.88826h6.1154l0.87903-0.88826-0.87903-0.88826z"/>
+      <path id="sege" d="m37.294 40.446-0.87903 0.88826-0.87903-0.88826v-6.1796l0.87903-0.88826 0.87903 0.88826z"/>
+      <path id="segd" d="m37.446 42.362-0.87903-0.88826 0.87903-0.88826h6.1154l0.87903 0.88826-0.87903 0.88826z"/>
+      <path id="segc" d="m45.476 40.447-0.87903 0.88825-0.87903-0.88825v-6.1796l0.87903-0.88826 0.87903 0.88826z"/>
+     </g>
+    </svg>
+
+    <br>
+    <br>
+    <button id="but1">1</button>
+    <button id="but2">2</button>
+    <button id="but3">3</button>
+    <br>
+    <button id="but4">4</button>
+    <button id="but5">5</button>
+    <button id="but6">6</button>
+    <br>
+    <button id="but7">7</button>
+    <button id="but8">8</button>
+    <button id="but9">9</button>
+    <br>
+    <button id="but0">0</button>
+
+  </body>
+</html>

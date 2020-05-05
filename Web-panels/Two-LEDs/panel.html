@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="es" dir="ltr">
   <head>
+    <title>TWO LEDs</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>TWO LEDs Panel</title>
-    <link rel="stylesheet" href="w3.css">
+    <link rel="icon" href="../../Web-components/media/favicon.ico" type="image/ico"/>
+    <link rel="shortcut icon" href="../../Web-components/media/favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../Web-components/css/w3.css">
     <link rel="stylesheet" href="../../Web-components/Led/led.css">
     <script src="../../Web-components/Serial/SerialPanel.js"></script>
     <script src="../../Web-components/Led/led.js"></script>
     <script src="panel.js" defer> </script>
   </head>
+
   <body>
 
-    <!-- Mensaje de error qeue se muestra si el navegador
+    <!-- Mensaje de error que se muestra si el navegador
          no tiene web-serial
      -->
     <div class="w3-panel w3-red w3-round-xlarge w3-border w3-margin-left w3-margin-right" id="msg_serial">
@@ -28,18 +31,60 @@
       y pincha en ENABLE</p>
     </div>
 
-    <!-- Boton de conectar -->
-    <div class="w3-container w3-margin">
-      <div class="w3-bar">
-        <button class="w3-bar-item w3-button w3-pale-green" id="butSerial" type="button"  disabled>🔌Conectar</button>
+    <!-- Panel de control LOVE -->
+    <div class="w3-card-4 w3-margin w3-round-large">
+
+      <header class="w3-container w3-grey w3-text-white">
+        <h5>LOVE Controls</h5>
+      </header>
+
+      <!-- Botones de gestion del panel -->
+      <div class="w3-container">
+          <p>
+          <button class="w3-button w3-pale-green w3-round-large" type="button" id="butSerial" disabled>🔌Connect</button>
+          <button class="w3-button w3-yellow w3-round-large " id="butReset" disabled>↪ Reset</button>
+          <button class="w3-bar-item w3-button w3-yellow w3-round-large " id="butSync" disabled>⤵ Sync</button>
+          </p>
       </div>
     </div>
 
-    <!-- LED -->
-    <div class="w3-container w3-border">
-      <div class="Led" id="led0"></div>
-      <div class="Led" id="led1"></div>
-    </div>
+   <!-- SALIDAS del circuito -->
+   <div class="w3-card-4 w3-margin w3-round-large">
+     <header class="w3-container w3-green w3-text-white">
+       <h5><b>OUTPUTS</b></h5>
+     </header>
+
+      <!-- LEDs -->
+     <div class="w3-container">
+       <div class="w3-row">
+
+         <!-- LED 1 -->
+         <div class="w3-col w3-center" style="width:54px">
+           <p class="w3-margin-top" style="margin:0px"><b>-</b></p>
+           <div class="Led led_disabled" id="leda"></div>
+         </div>
+
+         <!-- LED 2 -->
+         <div class="w3-col w3-center" style="width:54px">
+           <p class="w3-margin-top" style="margin:0px"><b>-</b></p>
+           <div class="Led led_disabled" id="ledb"></div>
+         </div>
+
+         <div class="w3-rest"></div>
+       </div>
+      </div>
+   </div>
+
+   <!-- Parte inferior: Enlaces -->
+   <div class="w3-container w3-margin-top">
+     <a class="w3-btn w3-sand" href="https://github.com/FPGAwars/LOVE-FPGA/raw/master/Web-panels/One-LED/panel-test.ice" download type="application/octet-stream" target="_blank">
+       Test circuit 1
+    </a>
+
+    <a class="w3-btn w3-sand" href="https://github.com/FPGAwars/LOVE-FPGA/tree/master/Web-panels/One-LED" target="_blank">Github</a>
+    <a class="w3-btn w3-sand" href="https://github.com/FPGAwars/LOVE-FPGA/wiki/Panel:-Un-LED" target="_blank">DOC</a>
+   </div>
+
 
   </body>
 </html>

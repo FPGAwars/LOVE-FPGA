@@ -1,18 +1,72 @@
-//-- Identificador de la variable bit a monitorizar en el LED0
-const VARBIT0 = 'a'
-const VARBIT1 = 'b'
-
 //-- Obtener el panel serie
-//-- Se pasan como argumentos los identificadores HTML del mensaje de
-//-- deteccion del puerto serie y del botón de conectar
-//-- El último es la función de retrollamada de cuando se recibe un
-//-- comando
-const sp = new SerialPanel(serial_cmd)
+//-- Se le pasa la funcion de retrollamada a la que llamar cuando
+//-- se recibe un dato
+const sp = new SerialPanel(serial_cmd);
+
+//-- Obtener los botones de Reset y Sync
+const butReset = document.getElementById("butReset");
+const butSync = document.getElementById("butSync");
+
+//-- Obtener todos los LEDs
+const leds_el = document.getElementsByClassName("Led");
+
+//-- Dispositivos de salida: LEDs
+let outputbits = [];
+
+//-- Añadir los LEDs
+for (let item of leds_el) {
+  let led = new Led(item);
+  outputbits.push(led);
+}
+
+//-- Leer los identificadores de los elementos
+//-- de salida y colocarlos en las etiquetas
+//-- encima de ellos
+for (let led of outputbits) {
+  let led_label = led.element.previousElementSibling;
+  led_label.innerHTML = "<b>" + led.varid + "</b>"
+}
+
+//-- Establecer la funcion de retrollamada cuando
+//-- el puerto serie se ha abierto
+sp.onconnect = () => {
+  console.log("Debug: Panel: Conectados!!");
+
+  //-- Activar los botones de Reset y Sync
+  butReset.disabled = false;
+  butSync.disabled = false;
+
+  //-- Cambiar el estado de los elementos de entrada a enable
+  for (let led of outputbits) {
+
+    led.enable()
+
+    //-- Al arrancar enviamos el estado 0 a todos
+    led.off();
+  }
+
+  //-- Llevar el foco al boton de reset
+  butReset.focus();
+}
+
+sp.ondisconnect = () => {
+  console.log("Debug: Panel: Desconectar...")
+
+  //-- Deshabilitar Los botones de Reset y Sync
+  butReset.disabled = true;
+  butSync.disabled = true;
+
+  //-- Al desconectar, se ponen a cero todos los elementos
+  //-- de entrada y se deshabilitan
+  for (let led of outputbits) {
+    led.off();
+    led.disable();
+  }
+
+}
 
 //-- Acceder al LED0 del panel
-const led0 = new Led("led0")
-//-- Acceder al LED1 del panel
-const led1 = new Led("led1")
+const led0 = outputbits[0];
 
 function bitvar(cmd, varname)
 //-- Procesar el comando recibido y comprobar si es una
@@ -41,9 +95,19 @@ function serial_cmd(cmd)
   //-- Degbug
   console.log("Comand: " + cmd + " Length: " + cmd.length);
 
-  //-- Establecer el valor de los LEDs
-  led0.set(bitvar(cmd, VARBIT0));
-  led1.set(bitvar(cmd, VARBIT1));
+  //-- Actuar sobre los LEDs
+  for (let led of outputbits) {
 
+    //-- Leer el bit de la variable binaria,
+    //-- si se ha recibido el comando correcto
+    let bit = bitvar(cmd, led.varid)
 
+    //-- Actuar sobre el LED del panel si se ha recibido el bit
+    if (bit) {
+      console.log("Bit: " + bit)
+      led.set(bit);
+    }
+  }
 }
+
+console.log("Testing....");

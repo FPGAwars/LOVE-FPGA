@@ -1,4 +1,4 @@
-## Panel with 4 Switches, 4 PUshbuttons and 8 LEDs
+## Panel with 4 Switches, 4 Pushbuttons and 8 LEDs
 
 ![](wiki/panel-01.png)
 

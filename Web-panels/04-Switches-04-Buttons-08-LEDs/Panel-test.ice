@@ -50,7 +50,7 @@
           "id": "c8fda402-111a-41d4-937d-b994607d3ed7",
           "type": "basic.outputLabel",
           "data": {
-            "blockColor": "fuchsia",
+            "blockColor": "navy",
             "name": "sw",
             "range": "[3:0]",
             "pins": [
@@ -75,7 +75,8 @@
                 "value": ""
               }
             ],
-            "virtual": true
+            "virtual": true,
+            "oldBlockColor": "fuchsia"
           },
           "position": {
             "x": 1024,
@@ -178,7 +179,7 @@
           "id": "a2471c85-fb36-4d05-9c97-2dcedf57e766",
           "type": "basic.inputLabel",
           "data": {
-            "blockColor": "fuchsia",
+            "blockColor": "navy",
             "name": "sw",
             "range": "[3:0]",
             "pins": [
@@ -244,8 +245,8 @@
             "oldBlockColor": "fuchsia"
           },
           "position": {
-            "x": 1088,
-            "y": -512
+            "x": 1080,
+            "y": -536
           }
         },
         {
@@ -271,8 +272,8 @@
           "id": "29736887-8100-462d-9c33-e266d45a4edf",
           "type": "basic.inputLabel",
           "data": {
-            "blockColor": "fuchsia",
-            "name": "B",
+            "blockColor": "darkgreen",
+            "name": "VOB",
             "range": "[17:0]",
             "pins": [
               {
@@ -366,7 +367,8 @@
                 "value": ""
               }
             ],
-            "virtual": true
+            "virtual": true,
+            "oldBlockColor": "darkgreen"
           },
           "position": {
             "x": 1144,
@@ -377,8 +379,8 @@
           "id": "aca0481f-d0a8-4cd6-b74f-a7799e286621",
           "type": "basic.outputLabel",
           "data": {
-            "blockColor": "fuchsia",
-            "name": "B",
+            "blockColor": "darkgreen",
+            "name": "VOB",
             "range": "[17:0]",
             "pins": [
               {
@@ -472,7 +474,8 @@
                 "value": ""
               }
             ],
-            "virtual": true
+            "virtual": true,
+            "oldBlockColor": "darkgreen"
           },
           "position": {
             "x": -632,
@@ -483,7 +486,7 @@
           "id": "b8a8fb09-813c-417e-8a48-668ae45d2833",
           "type": "basic.outputLabel",
           "data": {
-            "blockColor": "fuchsia",
+            "blockColor": "navy",
             "name": "sw",
             "range": "[3:0]",
             "pins": [
@@ -508,7 +511,8 @@
                 "value": ""
               }
             ],
-            "virtual": true
+            "virtual": true,
+            "oldBlockColor": "fuchsia"
           },
           "position": {
             "x": -784,
@@ -824,8 +828,8 @@
           "id": "d79dab5c-2f22-4f43-ada3-4bb388a1f659",
           "type": "d8f675ff9a2f29c09950daa1defc47d859fffaa5",
           "position": {
-            "x": 928,
-            "y": -544
+            "x": 920,
+            "y": -568
           },
           "size": {
             "width": 96,
@@ -998,6 +1002,182 @@
           "size": {
             "width": 96,
             "height": 128
+          }
+        },
+        {
+          "id": "0c9e4594-8d4f-4d6b-86ba-2152c6947fea",
+          "type": "basic.info",
+          "data": {
+            "info": "## INPUTS: Switches",
+            "readonly": true
+          },
+          "position": {
+            "x": -696,
+            "y": -904
+          },
+          "size": {
+            "width": 240,
+            "height": 40
+          }
+        },
+        {
+          "id": "460b5ebb-611d-4a98-a55b-fe0b787f5c6b",
+          "type": "basic.info",
+          "data": {
+            "info": "## Test Panel: 4-Switches, 4 Pushbuttons and 8 LEDs  \n\nThe switches and Pushbottons are connected to both 8 real LEDs and to 8 virtual LEDs",
+            "readonly": true
+          },
+          "position": {
+            "x": -848,
+            "y": -1080
+          },
+          "size": {
+            "width": 728,
+            "height": 88
+          }
+        },
+        {
+          "id": "742687ae-559b-466f-a95e-75aec7fc8ede",
+          "type": "basic.info",
+          "data": {
+            "info": "From PC",
+            "readonly": true
+          },
+          "position": {
+            "x": -848,
+            "y": -792
+          },
+          "size": {
+            "width": 192,
+            "height": 32
+          }
+        },
+        {
+          "id": "bfcf0cc1-9ccc-4202-93bd-2f5955e05131",
+          "type": "basic.info",
+          "data": {
+            "info": "## INPUTS: Pushbuttons",
+            "readonly": true
+          },
+          "position": {
+            "x": 336,
+            "y": -904
+          },
+          "size": {
+            "width": 320,
+            "height": 40
+          }
+        },
+        {
+          "id": "9acf854d-efd0-4f22-9450-d48f553ff1db",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the switches and  \nbuttons on the real LEDs",
+            "readonly": true
+          },
+          "position": {
+            "x": 1048,
+            "y": -992
+          },
+          "size": {
+            "width": 224,
+            "height": 56
+          }
+        },
+        {
+          "id": "aafffa23-ad2f-41c4-bade-55ba746067bf",
+          "type": "basic.info",
+          "data": {
+            "info": "## OUTPUT: LEDs",
+            "readonly": true
+          },
+          "position": {
+            "x": -776,
+            "y": -272
+          },
+          "size": {
+            "width": 320,
+            "height": 40
+          }
+        },
+        {
+          "id": "bd533364-07da-4775-b90d-2deba7ac639c",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the Switches",
+            "readonly": true
+          },
+          "position": {
+            "x": -200,
+            "y": -192
+          },
+          "size": {
+            "width": 176,
+            "height": 40
+          }
+        },
+        {
+          "id": "b838637f-f6f9-44b4-a1a5-e91c5f50cd0f",
+          "type": "basic.info",
+          "data": {
+            "info": "Show the PUshbuttons",
+            "readonly": true
+          },
+          "position": {
+            "x": 648,
+            "y": -208
+          },
+          "size": {
+            "width": 232,
+            "height": 40
+          }
+        },
+        {
+          "id": "f8268cad-d766-4299-bfd7-d0f476b2cb97",
+          "type": "basic.info",
+          "data": {
+            "info": "to PC",
+            "readonly": true
+          },
+          "position": {
+            "x": 1160,
+            "y": -168
+          },
+          "size": {
+            "width": 88,
+            "height": 32
+          }
+        },
+        {
+          "id": "66f6baee-0aac-45e9-b997-e514b87cbaf4",
+          "type": "basic.info",
+          "data": {
+            "info": "Virtual Output Bus",
+            "readonly": true
+          },
+          "position": {
+            "x": 1136,
+            "y": 40
+          },
+          "size": {
+            "width": 176,
+            "height": 40
+          }
+        },
+        {
+          "id": "0a9d836b-3da1-47f9-bf40-b08a1a263743",
+          "type": "basic.info",
+          "data": {
+            "info": "Virtual Output Bus",
+            "readonly": true
+          },
+          "position": {
+            "x": -728,
+            "y": -64
+          },
+          "size": {
+            "width": 176,
+            "height": 40
           }
         }
       ],

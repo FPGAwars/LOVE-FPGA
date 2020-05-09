@@ -110,6 +110,12 @@ sp.ondisconnect = () => {
 
 //-- Funcion de retrollama del boton de RESET
 butReset.onclick = ()=> {
+
+  //-- Poner todos los elementos de salida a 0
+  for (let led of outputbits) {
+    led.off();
+  }
+
   //-- Poner todos los elementos de entrada a 0
   for (let sw of inputbits) {
     sw.off();

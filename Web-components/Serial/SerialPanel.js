@@ -112,7 +112,10 @@ class SerialPanel {
     sp.port = await navigator.serial.requestPort();
 
     // - Abrir el puerto serie. Se espera hasta que este abierto
-    await sp.port.open({ baudrate: 115200 });
+    //-- Hasta Chrome 85, la propiedad correcta era baudrate
+    //-- A partir de Chrome 86 es baudRate
+    //-- Se dejan las dos de momento por compatibilidad
+    await sp.port.open({ baudRate: 115200, baudrate: 115200 });
 
     //-- Configurar el stream de salida
     //-- Es outputStream. Antes se pasa por un codificador de texto
